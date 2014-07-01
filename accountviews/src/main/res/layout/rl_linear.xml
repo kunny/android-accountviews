@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/acv_container_default_padidng">
+
+    <ImageView
+        android:id="@+id/iv_profile"
+        android:layout_width="@dimen/acv_profile_size"
+        android:layout_height="@dimen/acv_profile_size"
+        android:layout_alignParentTop="true"
+        android:scaleType="centerInside"
+        tools:src="@drawable/ic_launcher" />
+
+    <LinearLayout
+        android:id="@+id/ll_text_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/iv_profile"
+        android:layout_marginTop="@dimen/acv_elem_default_margin"
+
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_primary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            tools:text="John Doe" />
+
+        <TextView
+            android:id="@+id/tv_secondary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            tools:text="john.doe@mail.com" />
+
+    </LinearLayout>
+
+</RelativeLayout>

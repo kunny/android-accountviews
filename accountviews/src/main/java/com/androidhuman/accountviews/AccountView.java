@@ -1,33 +1,48 @@
+/*
+ * Copyright(c) 2014 Taeho Kim <jyte82@gmail.com>
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.androidhuman.accountviews;
 
 import android.content.Context;
-import android.text.style.TextAppearanceSpan;
+import android.content.res.TypedArray;
 import android.util.AttributeSet;
-import android.util.DisplayMetrics;
-import android.util.TypedValue;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
-import com.androidhuman.accountpickerview.R;
 
 /**
  * Created by kunny on 2014. 6. 23..
  */
 public class AccountView extends RelativeLayout {
 
-    private static final int ID_PROFILE_IMAGE = 0x1000;
-    private static final int ID_TEXT_SECTION = 0x0110;
-    private static final int ID_PRIMARY_TEXT = 0x0100;
-    private static final int ID_SECONDARY_TEXT = 0x0010;
-
     ImageView ivProfileImage;
     LinearLayout llTextContainer;
     TextView tvPrimary;
     TextView tvSecondary;
+
+    public static final int STYLE_COMPOSITE = 0;
+    public static final int STYLE_LINEAR = 1;
+
+    private int layout = STYLE_COMPOSITE;
+    private int profileImageSrc = -1;
+    private String primaryText;
+    private String secondaryText;
 
     public AccountView(Context context) {
         super(context);
@@ -45,60 +60,46 @@ public class AccountView extends RelativeLayout {
     }
 
     private void initialize(Context context, AttributeSet attrs){
+        // Get attributes from XML declaration
+        if(attrs!=null) {
+            TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.AccountView);
 
-        ivProfileImage = new ImageView(context);
-        tvPrimary = new TextView(context);
-        tvSecondary = new TextView(context);
+            layout = a.getInt(R.styleable.AccountView_layout, STYLE_COMPOSITE);
 
-        // Profile image view
-        RelativeLayout.LayoutParams param =
-                new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
-        param.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
-        param.addRule(RelativeLayout.ALIGN_BOTTOM, ID_TEXT_SECTION);
-        param.addRule(RelativeLayout.ALIGN_TOP, ID_TEXT_SECTION);
-        param.setMargins(0, 0,
-                (int)TypedValue.applyDimension(
-                        TypedValue.COMPLEX_UNIT_DIP, 10.f, getResources().getDisplayMetrics()), 0);
-
-        ivProfileImage.setId(ID_PROFILE_IMAGE);
-        if(attrs!=null || isInEditMode()) {
-            int profileImageSrc =
+            profileImageSrc =
                     attrs.getAttributeResourceValue("com.androidhuman.accountviews.AccountView",
                             "profileImageSrc", -1);
-            if (profileImageSrc != -1) {
-                ivProfileImage.setImageResource(profileImageSrc);
-            }
+
+            primaryText = attrs.getAttributeValue("com.androidhuman.accountviews.AccountView", "primaryText");
+            secondaryText = attrs.getAttributeValue("com.androidhuman.accountviews.AccountView", "secondaryText");
         }
 
-        addView(ivProfileImage, param);
+        // Inflate selected layout into view
+        LayoutInflater.from(context).inflate(getLayout(), this, true);
 
-        // Text container
-        llTextContainer = new LinearLayout(context);
-        llTextContainer.setId(ID_TEXT_SECTION);
-        llTextContainer.setOrientation(LinearLayout.VERTICAL);
+        ivProfileImage = (ImageView) findViewById(R.id.iv_profile);
+        tvPrimary = (TextView) findViewById(R.id.tv_primary);
+        tvSecondary = (TextView) findViewById(R.id.tv_secondary);
 
-        param = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
-
-        if(getChildCount()==0){ // If profile image is not added
-            param.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
-        }else {
-            param.addRule(RelativeLayout.RIGHT_OF, ID_PROFILE_IMAGE);
+        // Apply values
+        if (profileImageSrc != -1) {
+            ivProfileImage.setImageResource(profileImageSrc);
+        }else{
+            ivProfileImage.setVisibility(View.GONE);
         }
 
-        tvPrimary.setId(ID_PRIMARY_TEXT);
+        if(primaryText!=null){
+            tvPrimary.setText(primaryText);
+        }
 
-        tvPrimary.setTextAppearance(context, android.R.style.TextAppearance_Medium);
-        llTextContainer.addView(tvPrimary);
-
-        tvSecondary.setId(ID_SECONDARY_TEXT);
-        llTextContainer.addView(tvSecondary);
-
-        addView(llTextContainer, param);
+        if(secondaryText!=null){
+            tvSecondary.setText(secondaryText);
+        }
 
         if(isInEditMode()){
             ivProfileImage.setImageResource(R.drawable.ic_launcher);
-            tvPrimary.setText("John Doe");
-            tvSecondary.setText("test@sample.com");
+            tvPrimary.setText("Taeho Kim");
+            tvSecondary.setText("jyte82@gmail.com");
         }
     }
 
@@ -110,7 +111,19 @@ public class AccountView extends RelativeLayout {
         tvSecondary.setText(text);
     }
 
-    public void setImage(int resId){
+    public void setProfileImage(int resId){
         ivProfileImage.setImageResource(resId);
+        ivProfileImage.setVisibility(View.VISIBLE);
+    }
+
+    private int getLayout(){
+        switch(layout){
+            case STYLE_COMPOSITE:
+                return com.androidhuman.accountviews.R.layout.rl_composite;
+            case STYLE_LINEAR:
+                return com.androidhuman.accountviews.R.layout.rl_linear;
+            default:
+                throw new IllegalArgumentException();
+        }
     }
 }

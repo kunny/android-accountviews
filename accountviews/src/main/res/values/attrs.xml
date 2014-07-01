@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <declare-styleable name="com.androidhuman.accountviews.AccountView">
+    <declare-styleable name="AccountView">
         <attr name="profileImageSrc" format="reference" />
+        <attr name="primaryText" format="string" localization="suggested"/>
+        <attr name="secondaryText" format="string" localization="suggested" />
+        <attr name="layout" format="enum">
+            <enum name="composite" value="0"/>
+            <enum name="linear" value="1"/>
+        </attr>
     </declare-styleable>
 </resources>

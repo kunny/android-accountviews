@@ -16,6 +16,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".AccountViewJavaActivity"
+            android:label="@string/title_activity_account_view_java"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.androidhuman.accountviews.sample.MainActivity" />
+        </activity>
     </application>
 
 </manifest>
