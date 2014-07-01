@@ -32,6 +32,16 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.androidhuman.accountviews.sample.MainActivity" />
         </activity>
+        <activity
+            android:name=".ListAccountsActivity"
+            android:label="@string/title_activity_list_accounts"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.androidhuman.accountviews.sample.MainActivity" />
+        </activity>
     </application>
+
+    <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
 
 </manifest>

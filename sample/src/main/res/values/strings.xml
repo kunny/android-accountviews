@@ -6,6 +6,6 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_account_view_java">AccountView - from Java code</string>
     <string name="title_activity_account_view_xml">AccountView - from XML</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_list_accounts">List accounts</string>
 
 </resources>

@@ -33,7 +33,8 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
 
     private String[] menus = new String[]{
             "AccountView - from Java code",
-            "AccountView - from XML"
+            "AccountView - from XML",
+            "List accounts"
     };
 
     ListView lvMenus;
@@ -60,6 +61,11 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
             case 1:
                 startActivity(new Intent(this, AccountViewXmlActivity.class));
                 break;
+            case 2:
+                startActivity(new Intent(this, ListAccountsActivity.class));
+                break;
+            default:
+                throw new IllegalArgumentException("Not implemented");
         }
     }
 }
