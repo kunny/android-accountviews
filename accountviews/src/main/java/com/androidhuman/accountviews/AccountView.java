@@ -31,6 +31,7 @@ import android.widget.TextView;
  */
 public class AccountView extends RelativeLayout {
 
+    ImageView ivWallpaper;
     ImageView ivProfileImage;
     LinearLayout llTextContainer;
     TextView tvPrimary;
@@ -40,6 +41,8 @@ public class AccountView extends RelativeLayout {
     public static final int STYLE_LINEAR = 1;
 
     private int layout = STYLE_COMPOSITE;
+    private int wallpaperImageSrc = -1;
+    private int wallpaperColor = -1;
     private int profileImageSrc = -1;
     private String primaryText;
     private String secondaryText;
@@ -65,6 +68,8 @@ public class AccountView extends RelativeLayout {
             TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.AccountView);
 
             layout = a.getInt(R.styleable.AccountView_layout, STYLE_COMPOSITE);
+            wallpaperImageSrc = a.getResourceId(R.styleable.AccountView_wallpaperImageSrc, -1);
+            wallpaperColor = a.getColor(R.styleable.AccountView_wallpaperColor, -1);
             profileImageSrc = a.getResourceId(R.styleable.AccountView_profileImageSrc, -1);
 
             primaryText = a.getString(R.styleable.AccountView_primaryText);
@@ -74,11 +79,20 @@ public class AccountView extends RelativeLayout {
         // Inflate selected layout into view
         LayoutInflater.from(context).inflate(getLayout(), this, true);
 
+        ivWallpaper = (ImageView) findViewById(R.id.iv_wallpaper);
         ivProfileImage = (ImageView) findViewById(R.id.iv_profile);
         tvPrimary = (TextView) findViewById(R.id.tv_primary);
         tvSecondary = (TextView) findViewById(R.id.tv_secondary);
 
         // Apply values
+        if (wallpaperImageSrc != -1){
+            ivWallpaper.setImageResource(wallpaperImageSrc);
+        }
+
+        if (wallpaperColor != -1){
+            ivWallpaper.setBackgroundColor(wallpaperColor);
+        }
+
         if (profileImageSrc != -1) {
             ivProfileImage.setImageResource(profileImageSrc);
         }else{
