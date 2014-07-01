@@ -10,7 +10,7 @@
 If it is a first build after clone, the build may fails. If the build fails, Please follow following procedure :
 
 1. Remove ':sample' from `settings.gradle`. After removing the ':sample', the settings.gradle should looks like :  
-   ```gradle
+   ```
    include ':accountviews'
    ```
 2. Invoke `install` command for `android-accountviews` library.
@@ -18,7 +18,7 @@ If it is a first build after clone, the build may fails. If the build fails, Ple
    $ ./gradlew :accountviews:install
    ```
 3. Revert `settings.gradle` to original state.
-  ```gradle
+  ```
   include ':accountviews', ':sample'
   ```
 4. Now your build would be run without any issues.
@@ -26,19 +26,19 @@ If it is a first build after clone, the build may fails. If the build fails, Ple
 ### Add to dependency
 To use `android-accountviews` from your project, add following to your `build.gradle`.
 
-```gradle
-   buildscript {
-       repositories {
-           mavenCentral()
-           mavenLocal() // Add this
-       }
-   }
+```
+buildscript {
+    repositories {
+        mavenCentral()
+        mavenLocal() // Add this
+    }
+}
    
-   ... Skip some lines ...
+... Skip some lines ...
    
-   dependencies {
-       compile 'com.androidhuman.accountviews:+' // Add this
-   }
+dependencies {
+    compile 'com.androidhuman.accountviews:+' // Add this
+}
 ```
 
 Okay, it's all done. Now you can use `android-accountviews` from your project.
