@@ -2,8 +2,10 @@
 <resources>
 
     <string name="app_name">AccountView Sample</string>
-    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_main">AccountViews sample</string>
     <string name="action_settings">Settings</string>
-    <string name="title_activity_account_view_java">AccountViewJavaActivity</string>
+    <string name="title_activity_account_view_java">AccountView - from Java code</string>
+    <string name="title_activity_account_view_xml">AccountView - from XML</string>
+    <string name="hello_world">Hello world!</string>
 
 </resources>

@@ -58,7 +58,7 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
                 startActivity(new Intent(this, AccountViewJavaActivity.class));
                 break;
             case 1:
-
+                startActivity(new Intent(this, AccountViewXmlActivity.class));
                 break;
         }
     }

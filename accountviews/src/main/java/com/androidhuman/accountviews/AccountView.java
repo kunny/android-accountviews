@@ -65,13 +65,10 @@ public class AccountView extends RelativeLayout {
             TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.AccountView);
 
             layout = a.getInt(R.styleable.AccountView_layout, STYLE_COMPOSITE);
+            profileImageSrc = a.getResourceId(R.styleable.AccountView_profileImageSrc, -1);
 
-            profileImageSrc =
-                    attrs.getAttributeResourceValue("com.androidhuman.accountviews.AccountView",
-                            "profileImageSrc", -1);
-
-            primaryText = attrs.getAttributeValue("com.androidhuman.accountviews.AccountView", "primaryText");
-            secondaryText = attrs.getAttributeValue("com.androidhuman.accountviews.AccountView", "secondaryText");
+            primaryText = a.getString(R.styleable.AccountView_primaryText);
+            secondaryText = a.getString(R.styleable.AccountView_secondaryText);
         }
 
         // Inflate selected layout into view
