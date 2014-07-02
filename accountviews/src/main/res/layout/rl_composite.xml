@@ -5,14 +5,14 @@
     android:layout_height="@dimen/acv_composite_height">
 
     <ImageView
-        android:id="@+id/iv_wallpaper"
+        android:id="@+id/iv_profile_background"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#FF6644"
-        android:scaleType="fitCenter"
-        tools:src="@drawable/ic_launcher" />
+        android:scaleType="centerCrop"
+        tools:src="@drawable/bg_profile" />
 
     <View
+        android:id="@+id/v_profile_background_shadow"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#AA222222" />
@@ -23,7 +23,7 @@
         android:padding="@dimen/acv_container_default_padidng">
 
         <ImageView
-            android:id="@+id/iv_profile"
+            android:id="@+id/iv_profile_badge"
             android:layout_width="@dimen/acv_profile_size"
             android:layout_height="@dimen/acv_profile_size"
             android:layout_alignParentLeft="true"
@@ -34,8 +34,10 @@
             android:id="@+id/ll_text_container"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/iv_profile_badge"
+            android:layout_alignTop="@+id/iv_profile_badge"
             android:layout_marginLeft="@dimen/acv_elem_default_margin"
-            android:layout_toRightOf="@+id/iv_profile"
+            android:layout_toRightOf="@+id/iv_profile_badge"
             android:gravity="center_vertical"
             android:orientation="vertical">
 

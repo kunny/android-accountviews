@@ -18,6 +18,7 @@ package com.androidhuman.accountviews;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Bitmap;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,21 +32,29 @@ import android.widget.TextView;
  */
 public class AccountView extends RelativeLayout {
 
-    ImageView ivWallpaper;
-    ImageView ivProfileImage;
-    LinearLayout llTextContainer;
+    View vProfileBackgroundShadow;
+    ImageView ivProfileBackground;
+    ImageView ivProfileBadge;
+
     TextView tvPrimary;
     TextView tvSecondary;
 
     public static final int STYLE_COMPOSITE = 0;
     public static final int STYLE_LINEAR = 1;
+    public static final int STYLE_LINEAR_EXPANDED = 2;
 
+    // View attributes
     private int layout = STYLE_COMPOSITE;
-    private int wallpaperImageSrc = -1;
-    private int wallpaperColor = -1;
-    private int profileImageSrc = -1;
+    private int backgroundImageSrc = -1;
+    private int backgroundColor = -1;
+    private int badgeImageSrc = -1;
     private String primaryText;
     private String secondaryText;
+
+    private boolean showPrimaryText = true;
+    private boolean showSecondaryText = true;
+    private boolean showProfileBadge = true;
+    private boolean showProfileBackground = true;
 
     public AccountView(Context context) {
         super(context);
@@ -68,35 +77,45 @@ public class AccountView extends RelativeLayout {
             TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.AccountView);
 
             layout = a.getInt(R.styleable.AccountView_layout, STYLE_COMPOSITE);
-            wallpaperImageSrc = a.getResourceId(R.styleable.AccountView_wallpaperImageSrc, -1);
-            wallpaperColor = a.getColor(R.styleable.AccountView_wallpaperColor, -1);
-            profileImageSrc = a.getResourceId(R.styleable.AccountView_profileImageSrc, -1);
+            backgroundImageSrc = a.getResourceId(R.styleable.AccountView_profileBackgroundSrc, -1);
+            backgroundColor = a.getColor(R.styleable.AccountView_profileBackgroundColor, -1);
+            badgeImageSrc = a.getResourceId(R.styleable.AccountView_profileBadgeSrc, -1);
 
             primaryText = a.getString(R.styleable.AccountView_primaryText);
             secondaryText = a.getString(R.styleable.AccountView_secondaryText);
+
+            showPrimaryText = a.getBoolean(R.styleable.AccountView_showPrimaryText, true);
+            showSecondaryText = a.getBoolean(R.styleable.AccountView_showSecondaryText, true);
+            showProfileBadge = a.getBoolean(R.styleable.AccountView_showProfileBadge, true);
+            showProfileBackground = a.getBoolean(R.styleable.AccountView_showProfileBackground, true);
+
+            a.recycle();
         }
 
         // Inflate selected layout into view
         LayoutInflater.from(context).inflate(getLayout(), this, true);
 
-        ivWallpaper = (ImageView) findViewById(R.id.iv_wallpaper);
-        ivProfileImage = (ImageView) findViewById(R.id.iv_profile);
+        vProfileBackgroundShadow = findViewById(R.id.v_profile_background_shadow);
+        ivProfileBackground = (ImageView) findViewById(R.id.iv_profile_background);
+        ivProfileBadge = (ImageView) findViewById(R.id.iv_profile_badge);
         tvPrimary = (TextView) findViewById(R.id.tv_primary);
         tvSecondary = (TextView) findViewById(R.id.tv_secondary);
 
         // Apply values
-        if (wallpaperImageSrc != -1){
-            ivWallpaper.setImageResource(wallpaperImageSrc);
+        if (backgroundImageSrc != -1){
+            ivProfileBackground.setImageResource(backgroundImageSrc);
+            showProfileBackground(true);
         }
 
-        if (wallpaperColor != -1){
-            ivWallpaper.setBackgroundColor(wallpaperColor);
+        if (backgroundColor != -1){
+            ivProfileBackground.setBackgroundColor(backgroundColor);
+            showProfileBackground(true);
         }
 
-        if (profileImageSrc != -1) {
-            ivProfileImage.setImageResource(profileImageSrc);
+        if (badgeImageSrc != -1) {
+            ivProfileBadge.setImageResource(badgeImageSrc);
         }else{
-            ivProfileImage.setVisibility(View.GONE);
+            ivProfileBadge.setVisibility(View.GONE);
         }
 
         if(primaryText!=null){
@@ -107,8 +126,14 @@ public class AccountView extends RelativeLayout {
             tvSecondary.setText(secondaryText);
         }
 
+        showPrimaryText(showPrimaryText);
+        showSecondaryText(showSecondaryText);
+        showProfileBadge(showProfileBadge);
+        showProfileBackground(showProfileBackground);
+
         if(isInEditMode()){
-            ivProfileImage.setImageResource(R.drawable.ic_launcher);
+            ivProfileBadge.setImageResource(com.androidhuman.accountviews.R.drawable.ic_launcher);
+            ivProfileBackground.setImageResource(com.androidhuman.accountviews.R.drawable.bg_profile);
             tvPrimary.setText("Taeho Kim");
             tvSecondary.setText("jyte82@gmail.com");
         }
@@ -122,9 +147,36 @@ public class AccountView extends RelativeLayout {
         tvSecondary.setText(text);
     }
 
-    public void setProfileImage(int resId){
-        ivProfileImage.setImageResource(resId);
-        ivProfileImage.setVisibility(View.VISIBLE);
+    public void setProfileBadge(int resId){
+        ivProfileBadge.setImageResource(resId);
+    }
+
+    public void setProfileBadge(Bitmap bitmap){
+        ivProfileBadge.setImageBitmap(bitmap);
+    }
+
+    public void setProfileBackground(int resId){
+        ivProfileBackground.setImageResource(resId);
+    }
+
+    public void setProfileBackground(Bitmap bitmap){
+        ivProfileBackground.setImageBitmap(bitmap);
+    }
+
+    public void showProfileBadge(boolean show){
+        ivProfileBadge.setVisibility(show ? View.VISIBLE : View.GONE);
+    }
+
+    public void showProfileBackground(boolean show){
+        ivProfileBackground.setVisibility(show ? View.VISIBLE : View.INVISIBLE);
+    }
+
+    public void showPrimaryText(boolean show){
+        tvPrimary.setVisibility(show ? View.VISIBLE : View.GONE);
+    }
+
+    public void showSecondaryText(boolean show){
+        tvSecondary.setVisibility(show ? View.VISIBLE : View.GONE);
     }
 
     private int getLayout(){
@@ -133,6 +185,8 @@ public class AccountView extends RelativeLayout {
                 return com.androidhuman.accountviews.R.layout.rl_composite;
             case STYLE_LINEAR:
                 return com.androidhuman.accountviews.R.layout.rl_linear;
+            case STYLE_LINEAR_EXPANDED:
+                return com.androidhuman.accountviews.R.layout.rl_linear_expanded;
             default:
                 throw new IllegalArgumentException();
         }

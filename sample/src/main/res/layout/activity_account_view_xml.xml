@@ -16,7 +16,7 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    xmlns:acv="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -31,10 +31,25 @@
     <com.androidhuman.accountviews.AccountView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        custom:profileImageSrc="@drawable/ic_launcher"
-        custom:primaryText="Taeho Kim"
-        custom:secondaryText="jyte82@gmail.com"
-        custom:layout="linear"
+        acv:profileBadgeSrc="@drawable/ic_launcher"
+        acv:primaryText="Taeho Kim"
+        acv:secondaryText="jyte82@gmail.com"
+        acv:layout="linear"
+        />
+
+    <TextView android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="?android:listSeparatorTextViewStyle"
+        android:text="Linear type(expanded)" />
+
+    <com.androidhuman.accountviews.AccountView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        acv:profileBackgroundSrc="@drawable/bg_profile"
+        acv:profileBadgeSrc="@drawable/ic_launcher"
+        acv:primaryText="Taeho Kim"
+        acv:secondaryText="jyte82@gmail.com"
+        acv:layout="linear_expanded"
         />
 
     <TextView android:layout_width="match_parent"
@@ -45,10 +60,10 @@
     <com.androidhuman.accountviews.AccountView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        custom:profileImageSrc="@drawable/ic_launcher"
-        custom:primaryText="Taeho Kim"
-        custom:secondaryText="jyte82@gmail.com"
-        custom:layout="composite"
+        acv:profileBadgeSrc="@drawable/ic_launcher"
+        acv:primaryText="Taeho Kim"
+        acv:secondaryText="jyte82@gmail.com"
+        acv:layout="composite"
         />
 
 </LinearLayout>
