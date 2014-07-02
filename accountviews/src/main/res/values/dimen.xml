@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="acv_profile_size">40dp</dimen>
-    <dimen name="acv_elem_default_margin">5dp</dimen>
+    <dimen name="acv_profile_size">48dp</dimen>
+    <dimen name="acv_elem_default_margin">8dp</dimen>
     <dimen name="acv_container_default_padidng">15dp</dimen>
+    <dimen name="acv_composite_height">78dp</dimen>
+    <dimen name="acv_linear_height">130dp</dimen>
+    <dimen name="acv_linear_height_expanded">160dp</dimen>
 </resources>

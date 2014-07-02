@@ -1,12 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="AccountView">
-        <attr name="profileImageSrc" format="reference" />
+        <attr name="profileBackgroundSrc" format="reference" />
+        <attr name="profileBackgroundColor" format="color" />
+        <attr name="profileBadgeSrc" format="reference" />
+
         <attr name="primaryText" format="string" localization="suggested"/>
         <attr name="secondaryText" format="string" localization="suggested" />
+
+        <attr name="showPrimaryText" format="boolean"/>
+        <attr name="showSecondaryText" format="boolean"/>
+        <attr name="showProfileBadge" format="boolean"/>
+        <attr name="showProfileBackground" format="boolean"/>
+
         <attr name="layout" format="enum">
             <enum name="composite" value="0"/>
             <enum name="linear" value="1"/>
+            <enum name="linear_expanded" value="2"/>
         </attr>
     </declare-styleable>
 </resources>

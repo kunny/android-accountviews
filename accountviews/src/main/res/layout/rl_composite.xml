@@ -1,42 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:padding="@dimen/acv_container_default_padidng">
+    android:layout_height="@dimen/acv_composite_height">
 
     <ImageView
-        android:id="@+id/iv_profile"
-        android:layout_width="@dimen/acv_profile_size"
-        android:layout_height="@dimen/acv_profile_size"
-        android:layout_alignParentLeft="true"
-        android:scaleType="centerInside"
-        tools:src="@drawable/ic_launcher" />
+        android:id="@+id/iv_profile_background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        tools:src="@drawable/bg_profile" />
 
-    <LinearLayout
-        android:id="@+id/ll_text_container"
+    <View
+        android:id="@+id/v_profile_background_shadow"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#AA222222" />
+
+    <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/acv_elem_default_margin"
-        android:layout_toRightOf="@+id/iv_profile"
-        android:gravity="center_vertical"
-        android:orientation="vertical">
+        android:layout_height="match_parent"
+        android:padding="@dimen/acv_container_default_padidng">
 
-        <TextView
-            android:id="@+id/tv_primary"
+        <ImageView
+            android:id="@+id/iv_profile_badge"
+            android:layout_width="@dimen/acv_profile_size"
+            android:layout_height="@dimen/acv_profile_size"
+            android:layout_alignParentLeft="true"
+            android:scaleType="centerInside"
+            tools:src="@drawable/ic_launcher" />
+
+        <LinearLayout
+            android:id="@+id/ll_text_container"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            tools:text="Taeho Kim" />
+            android:layout_alignBottom="@+id/iv_profile_badge"
+            android:layout_alignTop="@+id/iv_profile_badge"
+            android:layout_marginLeft="@dimen/acv_elem_default_margin"
+            android:layout_toRightOf="@+id/iv_profile_badge"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/tv_secondary"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            tools:text="jyte82@gmail.com" />
+            <TextView
+                android:id="@+id/tv_primary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                tools:text="Taeho Kim" />
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/tv_secondary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                tools:text="jyte82@gmail.com" />
 
-</RelativeLayout>
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</FrameLayout>

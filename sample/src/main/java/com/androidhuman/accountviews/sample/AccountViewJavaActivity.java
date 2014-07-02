@@ -40,7 +40,8 @@ public class AccountViewJavaActivity extends ActionBarActivity {
         view = new AccountView(this);
         view.setPrimaryText("Taeho Kim");
         view.setSecondaryText("jyte82@gmail.com");
-        view.setProfileImage(R.drawable.ic_launcher);
+        view.setProfileBadge(R.drawable.ic_launcher);
+        view.setProfileBackground(R.drawable.bg_profile);
 
         container.addView(view);
     }
