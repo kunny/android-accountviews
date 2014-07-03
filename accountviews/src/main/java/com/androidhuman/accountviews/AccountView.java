@@ -19,6 +19,8 @@ package com.androidhuman.accountviews;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -56,6 +58,8 @@ public class AccountView extends RelativeLayout {
     private boolean showProfileBadge = true;
     private boolean showProfileBackground = true;
 
+    private boolean circleFrame = true;
+
     public AccountView(Context context) {
         super(context);
         initialize(context, null);
@@ -89,6 +93,7 @@ public class AccountView extends RelativeLayout {
             showProfileBadge = a.getBoolean(R.styleable.AccountView_showProfileBadge, true);
             showProfileBackground = a.getBoolean(R.styleable.AccountView_showProfileBackground, true);
 
+            circleFrame = a.getBoolean(R.styleable.AccountView_circleFrame, true);
             a.recycle();
         }
 
@@ -103,17 +108,17 @@ public class AccountView extends RelativeLayout {
 
         // Apply values
         if (backgroundImageSrc != -1){
-            ivProfileBackground.setImageResource(backgroundImageSrc);
+            setProfileBackground(backgroundImageSrc);
             showProfileBackground(true);
         }
 
         if (backgroundColor != -1){
-            ivProfileBackground.setBackgroundColor(backgroundColor);
+            setBackgroundColor(backgroundColor);
             showProfileBackground(true);
         }
 
         if (badgeImageSrc != -1) {
-            ivProfileBadge.setImageResource(badgeImageSrc);
+            setProfileBadge(badgeImageSrc);
         }else{
             ivProfileBadge.setVisibility(View.GONE);
         }
@@ -148,11 +153,25 @@ public class AccountView extends RelativeLayout {
     }
 
     public void setProfileBadge(int resId){
-        ivProfileBadge.setImageResource(resId);
+        //if(circleFrame) {
+        //    Drawable drawable = new RoundedDrawable(getResources(), badgeImageSrc);
+        //    ivProfileBadge.setImageDrawable(drawable);
+        //}else{
+            ivProfileBadge.setImageResource(resId);
+        //}
     }
 
     public void setProfileBadge(Bitmap bitmap){
-        ivProfileBadge.setImageBitmap(bitmap);
+        //if(circleFrame) {
+        //    Drawable drawable = new RoundedDrawable(bitmap);
+        //    ivProfileBadge.setImageDrawable(drawable);
+        //}else {
+            ivProfileBadge.setImageBitmap(bitmap);
+        //}
+    }
+
+    public void setProfileBadge(Drawable drawable) {
+        ivProfileBadge.setImageDrawable(drawable);
     }
 
     public void setProfileBackground(int resId){
@@ -161,6 +180,14 @@ public class AccountView extends RelativeLayout {
 
     public void setProfileBackground(Bitmap bitmap){
         ivProfileBackground.setImageBitmap(bitmap);
+    }
+
+    public void setProfileBackground(Drawable drawable) {
+        ivProfileBackground.setImageDrawable(drawable);
+    }
+
+    public void setProfileBackgroundColor(int color){
+        ivProfileBackground.setBackgroundColor(color);
     }
 
     public void showProfileBadge(boolean show){

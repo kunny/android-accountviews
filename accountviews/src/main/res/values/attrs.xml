@@ -13,6 +13,8 @@
         <attr name="showProfileBadge" format="boolean"/>
         <attr name="showProfileBackground" format="boolean"/>
 
+        <attr name="circleFrame" format="boolean"/>
+
         <attr name="layout" format="enum">
             <enum name="composite" value="0"/>
             <enum name="linear" value="1"/>
