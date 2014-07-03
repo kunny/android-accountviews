@@ -174,6 +174,10 @@ public class AccountView extends RelativeLayout {
         ivProfileBadge.setImageDrawable(drawable);
     }
 
+    public void setProfileBadgeBorderWidth(int widthInDp){
+        ivProfileBadge.setBorderWidth(2);
+    }
+
     public void setProfileBackground(int resId){
         ivProfileBackground.setImageResource(resId);
     }

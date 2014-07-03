@@ -23,10 +23,10 @@
     </declare-styleable>
 
     <declare-styleable name="CircularImageView">
-        <attr name="border" format="boolean"></attr>
-        <attr name="border_width" format="dimension"></attr>
-        <attr name="border_color" format="color"></attr>
-        <attr name="shadow" format="boolean"></attr>
+        <attr name="profileBadgeBorder" format="boolean"/>
+        <attr name="profileBadgeBorderWidth" format="dimension"/>
+        <attr name="profileBadgeBorderColor" format="color"/>
+        <attr name="profileBadgeShadow" format="boolean"/>
     </declare-styleable>
 
 </resources>

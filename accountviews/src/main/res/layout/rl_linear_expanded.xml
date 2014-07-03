@@ -45,8 +45,9 @@
             android:layout_width="@dimen/acv_profile_size_large"
             android:layout_height="@dimen/acv_profile_size_large"
             android:layout_alignParentTop="true"
-            acv:border_color="#EDEDED"
-            acv:border_width="@dimen/acv_profile_badge_border"
+            acv:profileBadgeBorderColor="#EDEDED"
+            acv:profileBadgeBorderWidth="@dimen/acv_profile_badge_border"
+            acv:profileBadgeShadow="true"
             tools:src="@drawable/ic_launcher" />
 
         <LinearLayout

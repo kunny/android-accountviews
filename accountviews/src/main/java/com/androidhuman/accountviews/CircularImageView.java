@@ -2,8 +2,8 @@
  * Copyright(c) 2014 Taeho Kim <jyte82@gmail.com>
  *
  * Modifications:
- * - Add setMode() to switch between CircularImageView and original ImageView implementation.
- * - Set default border width to 1dp
+ * - Set default border width to 2dp
+ * - Change attributes' name
  *
  * CircularImageView by Lopez Mikhael is licensed under a Creative Commons Attribution 4.0 International License.
  * Based on a work at https://github.com/lopspower/CircularImageView.
@@ -54,13 +54,13 @@ public class CircularImageView extends ImageView {
         // load the styled attributes and set their properties
         TypedArray attributes = context.obtainStyledAttributes(attrs, R.styleable.CircularImageView, defStyle, 0);
 
-        if(attributes.getBoolean(R.styleable.CircularImageView_border, true)) {
-            int defaultBorderSize = (int) (4 * getContext().getResources().getDisplayMetrics().density + 0.5f);
-            setBorderWidth(attributes.getDimensionPixelOffset(R.styleable.CircularImageView_border_width, defaultBorderSize));
-            setBorderColor(attributes.getColor(R.styleable.CircularImageView_border_color, Color.WHITE));
+        if(attributes.getBoolean(R.styleable.CircularImageView_profileBadgeBorder, true)) {
+            int defaultBorderSize = (int) (2 * getContext().getResources().getDisplayMetrics().density + 0.5f);
+            setBorderWidth(attributes.getDimensionPixelOffset(R.styleable.CircularImageView_profileBadgeBorderWidth, defaultBorderSize));
+            setBorderColor(attributes.getColor(R.styleable.CircularImageView_profileBadgeBorderColor, Color.WHITE));
         }
 
-        if(attributes.getBoolean(R.styleable.CircularImageView_shadow, false)) {
+        if(attributes.getBoolean(R.styleable.CircularImageView_profileBadgeShadow, false)) {
             addShadow();
         }
 
@@ -80,7 +80,6 @@ public class CircularImageView extends ImageView {
     }
 
     public void addShadow() {
-        setLayerType(LAYER_TYPE_SOFTWARE, paintBorder);
         paintBorder.setShadowLayer(4.0f, 0.0f, 2.0f, Color.BLACK);
     }
 
@@ -102,7 +101,7 @@ public class CircularImageView extends ImageView {
             paint.setShader(shader);
 
             // circleCenter is the x or y of the view's center
-            // radius is the radius in pixels of the cirle to be drawn
+            // radius is the radius in pixels of the circle to be drawn
             // paint contains the shader that will texture the shape
             int circleCenter = (canvasSize - (borderWidth * 2)) / 2;
             canvas.drawCircle(circleCenter + borderWidth,
