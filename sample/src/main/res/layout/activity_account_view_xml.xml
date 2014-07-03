@@ -31,7 +31,7 @@
     <com.androidhuman.accountviews.AccountView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        acv:profileBadgeSrc="@drawable/ic_launcher"
+        acv:profileBadgeSrc="@drawable/img_gaejugi"
         acv:primaryText="Taeho Kim"
         acv:secondaryText="jyte82@gmail.com"
         acv:layout="linear"
@@ -46,7 +46,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         acv:profileBackgroundSrc="@drawable/bg_profile"
-        acv:profileBadgeSrc="@drawable/ic_launcher"
+        acv:profileBadgeSrc="@drawable/img_gaejugi"
         acv:primaryText="Taeho Kim"
         acv:secondaryText="jyte82@gmail.com"
         acv:layout="linear_expanded"
@@ -60,7 +60,7 @@
     <com.androidhuman.accountviews.AccountView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        acv:profileBadgeSrc="@drawable/ic_launcher"
+        acv:profileBadgeSrc="@drawable/img_gaejugi"
         acv:primaryText="Taeho Kim"
         acv:secondaryText="jyte82@gmail.com"
         acv:layout="composite"

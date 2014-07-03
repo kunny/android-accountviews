@@ -36,7 +36,7 @@ public class AccountView extends RelativeLayout {
 
     View vProfileBackgroundShadow;
     ImageView ivProfileBackground;
-    ImageView ivProfileBadge;
+    CircularImageView ivProfileBadge;
 
     TextView tvPrimary;
     TextView tvSecondary;
@@ -102,7 +102,7 @@ public class AccountView extends RelativeLayout {
 
         vProfileBackgroundShadow = findViewById(R.id.v_profile_background_shadow);
         ivProfileBackground = (ImageView) findViewById(R.id.iv_profile_background);
-        ivProfileBadge = (ImageView) findViewById(R.id.iv_profile_badge);
+        ivProfileBadge = (CircularImageView) findViewById(R.id.iv_profile_badge);
         tvPrimary = (TextView) findViewById(R.id.tv_primary);
         tvSecondary = (TextView) findViewById(R.id.tv_secondary);
 
